@@ -1,0 +1,55 @@
+server:
+  port: 9003
+
+spring:
+  config:
+    import: optional:aws-secretsmanager:dtmp-dev-e2b-sm
+  mail:
+    host: email.shinsegae.ai
+
+logging:
+  level:
+    com.test.app: DEBUG
+    com.google.api.client.http: INFO
+
+logbook:
+  format:
+    style: http
+  write:
+    max-body-size: 1000
+
+big-query:
+  project-id: emartgcp-p-cdp
+  dataset-name: project_cdp_dev
+
+secrets:
+  bq-dtmp-data-credentials: ${cdp-gcp-credentials-console-sa:}
+
+persistence:
+  meta:
+    datasource:
+      url: jdbc:postgresql://aiml-dev-di-rds-instance-1.ceyxczekxlan.ap-northeast-2.rds.amazonaws.com:5432/db_e2b
+
+cloud:
+  aws:
+    credentials:
+      profile-name: default
+
+system:
+  audit.log.enable: false
+  security.auth.enable: true
+  bucket-name: "s3"
+  backend:
+    url: "http://localhost:9003"
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+jwt:
+  access-token-validity: 12h
+
+p6spy:
+  config:
+    appender: com.p6spy.engine.spy.appender.Slf4JLogger

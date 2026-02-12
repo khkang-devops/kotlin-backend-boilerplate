@@ -1,0 +1,116 @@
+server:
+  port: 8080
+  error:
+    whitelabel:
+      enabled: false
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+  shutdown: graceful
+  compression:
+    enabled: true
+    mime-types: "text/csv"
+    min-response-size: 2KB
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: console
+  mvc:
+    throw-exception-if-no-handler-found: false
+    servlet:
+      load-on-startup: 1
+    pathmatch:
+      matching-strategy: ant_path_matcher
+  web:
+    resources:
+      add-mappings: true
+      cache:
+        cachecontrol:
+          max-age: 1d
+  lifecycle:
+    timeout-per-shutdown-phase: 1m
+  mail:
+    host: 10.253.12.132
+    port: 25
+
+logging:
+  config: classpath:logging/logback-spring.xml
+  level:
+    root: INFO
+    org.zalando.logbook: TRACE
+    org.zalando.logbook.json.JsonPathBodyFilters: INFO
+    org.hibernate.SQL: INFO
+    org.hibernate.type: INFO
+    com.amazonaws: INFO
+
+logbook:
+  format:
+    style: http
+  write:
+    max-body-size: 500
+  predicate:
+    exclude:
+      - path: /health
+      - path: /js/**
+      - path: /css/**
+      - path: /fonts/**
+      - path: /assets/**
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: loggers
+  endpoint:
+    loggers:
+      enabled: true
+
+persistence:
+  meta:
+    datasource:
+      driver-class-name: org.postgresql.Driver
+      username: ${pg-meta-user:}
+      password: ${pg-meta-password:}
+      hikari:
+        auto-commit: false
+        connection-timeout: 10000
+        minimum-idle: 2
+        maximum-pool-size: 2
+        transaction-isolation: TRANSACTION_READ_COMMITTED
+        data-source-properties:
+          rewriteBatchedStatements: true
+
+secrets:
+  bq-dtmp-data-credentials: ${cdp-gcp-credentials-console-sa:}
+
+cloud:
+  aws:
+    region:
+      static: ap-northeast-2
+    credentials:
+      instance-profile: true
+
+system:
+  audit.log.enable: true
+  security.auth.enable: true
+  bucket-name: "s3"
+
+decorator:
+  datasource:
+    p6spy:
+      enable-logging: true
+
+jwt:
+  secret: 4jl0UIDNtNkIjxOgZwnQ9pgkrTCXhYgfNubQh0hEwXY=
+  access-token-validity: 30m
+  refresh-token-validity: 30m
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    default-model-expand-depth: 10
+    operations-sorter: alpha
+  show-actuator: true

@@ -1,0 +1,23 @@
+spring:
+  ldap:
+    urls: ldap://3.36.49.98:389
+    username: datafabric@shinsegae.com
+    password: "!datafabric00"
+  output:
+    ansi:
+      enabled: always
+  main:
+    banner-mode: off
+
+logging:
+  config: classpath:logging/logback-spring.xml
+  level:
+    root: INFO
+    com.amazonaws: TRACE
+
+persistence:
+  meta:
+    datasource:
+      url: jdbc:postgresql://dev-databiz-pg-meta.poc.emart-dtmp.com:5432/db_e2b
+      username: dtmp
+      password: dtmp1234

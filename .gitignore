@@ -1,0 +1,56 @@
+HELP.md
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+bin/
+!**/src/main/**/bin/
+!**/src/test/**/bin/
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### frontend static resource ###
+/src/main/resources/static/
+
+### frontend ###
+/src/frontend/.DS_Store
+/src/frontend/.idea/
+/src/frontend/.vscode/
+/src/frontend/node_modules/
+/src/frontend/node/
+/src/frontend/nodejs/
+
+/frontend/.DS_Store
+/frontend/.idea/
+/frontend/.vscode/
+/frontend/.cache/
+/frontend/node_modules/
+/frontend/node/
+/frontend/nodejs/

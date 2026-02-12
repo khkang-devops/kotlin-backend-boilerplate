@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <springProperty scope="context" name="appName" source="spring.application.name"/>
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+    <include resource="logging/logback-json-appender.xml"/>
+
+    <root level="INFO">
+
+        <springProfile name="local">
+            <appender-ref ref="CONSOLE"/>
+<!--            <appender-ref ref="JSON_CONSOLE"/>-->
+        </springProfile>
+
+        <springProfile name="!local">
+            <appender-ref ref="JSON_CONSOLE"/>
+        </springProfile>
+
+    </root>
+
+</configuration>

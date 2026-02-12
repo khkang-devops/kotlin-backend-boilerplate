@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<included>
+    <appender name="JSON_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="net.logstash.logback.encoder.LogstashEncoder">
+
+<!--            <customFields>{"ecss":"${appName}"}</customFields>-->
+
+            <fieldNames class="net.logstash.logback.fieldnames.ShortenedFieldNames"/>
+            <springProfile name="local">
+                <jsonGeneratorDecorator class="net.logstash.logback.decorate.PrettyPrintingJsonGeneratorDecorator"/>
+            </springProfile>
+
+        </encoder>
+    </appender>
+
+</included>

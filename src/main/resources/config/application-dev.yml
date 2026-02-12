@@ -1,0 +1,22 @@
+spring:
+  config:
+    import: optional:aws-secretsmanager:dtmp-dev-e2b-sm
+
+logging:
+  level:
+    com.test.app: DEBUG
+
+big-query:
+  project-id: emartgcp-p-cdp
+  dataset-name: project_cdp_dev
+
+persistence:
+  meta:
+    datasource:
+      url: jdbc:postgresql://aiml-dev-di-rds-instance-1.ceyxczekxlan.ap-northeast-2.rds.amazonaws.com:5432/db_e2b
+
+system:
+  security.auth.enable: true
+  bucket-name: "s3"
+  backend:
+    url: "https://test.com"

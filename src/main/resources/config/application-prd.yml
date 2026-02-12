@@ -1,0 +1,20 @@
+spring:
+  config:
+    import: optional:aws-secretsmanager:dtmp-prd-e2b-sm
+
+logging:
+  level:
+    com.test.app: INFO
+
+big-query:
+  project-id: emartgcp-p-cdp
+  dataset-name: project_cdp_prd
+
+persistence:
+  meta:
+    datasource:
+      url: jdbc:postgresql://aiml-prd-di-rds.cluster-cc7yeuap1ifn.ap-northeast-2.rds.amazonaws.com:5432/db_e2b
+
+system:
+  backend:
+    url: "https://test.com"
